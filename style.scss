@@ -20,6 +20,7 @@ body {
 header {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
 
   nav {
     position: fixed;
@@ -30,31 +31,57 @@ header {
     height: 100vh;
 
     display: flex;
-    justify-content: center;
-    align-items: center;
 
     background-color: #fff;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.3s ease-in-out;
 
-    &::before,
-    &::after {
-      content: "";
+    &.up {
+      z-index: -1;
+    }
+
+    &.down {
+      z-index: 0;
+    }
+
+    .side {
       height: 100vh;
       background-color: black;
       flex: 1;
     }
 
-    &.up {
+    .side,
+    #nav-links {
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .side-1-from {
+      transform: translateX(-100%);
+    }
+
+    .side-1-to,
+    .side-2-to {
+      transform: translateX(0);
+    }
+
+    .side-2-from {
+      transform: translateX(100%);
+    }
+
+    .nav-links-from {
       transform: translateY(-100%);
     }
 
-    &.down {
+    .nav-links-to {
       transform: translateY(0);
     }
 
     #nav-links {
       list-style: none;
       flex: 2;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       li {
         text-align: center;
         padding: 1rem 0;
@@ -71,6 +98,7 @@ header {
 
   h1 {
     font-weight: $semi-bold;
+    color: rgb(99, 90, 90);
   }
 
   .nav-toggler {
@@ -78,19 +106,39 @@ header {
 
     .strip {
       border-radius: 5px;
-      width: 60px;
+      width: 50px;
       height: 5px;
-      background-color: #000;
-      transform-origin: top left;
-      transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+      background-color: rgb(99, 90, 90);
+      transform-origin: center left;
+      transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
     }
 
-    .strip-1-up {
-      transform: rotate(45deg);
-    }
+    $deg: 31.79deg;
 
-    .strip-1-down {
+    .strip-1-trans-from {
       transform: rotate(0);
+    }
+
+    .strip-1-trans-to {
+      transform: rotate($deg);
+    }
+
+    .strip-2-trans-from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .strip-2-trans-to {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+
+    .strip-3-trans-from {
+      transform: rotate(0);
+    }
+
+    .strip-3-trans-to {
+      transform: rotate(-$deg);
     }
 
     > * + * {

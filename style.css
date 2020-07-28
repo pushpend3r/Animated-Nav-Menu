@@ -43,6 +43,9 @@ header {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
 header nav {
@@ -54,21 +57,22 @@ header nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   background-color: #fff;
-  -webkit-transition: -webkit-transform 0.2s ease-in-out;
-  transition: -webkit-transform 0.2s ease-in-out;
-  transition: transform 0.2s ease-in-out;
-  transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
 }
 
-header nav::before, header nav::after {
-  content: "";
+header nav.up {
+  z-index: -1;
+}
+
+header nav.down {
+  z-index: 0;
+}
+
+header nav .side {
   height: 100vh;
   background-color: black;
   -webkit-box-flex: 1;
@@ -76,12 +80,36 @@ header nav::before, header nav::after {
           flex: 1;
 }
 
-header nav.up {
+header nav .side,
+header nav #nav-links {
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  transition: -webkit-transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
+}
+
+header nav .side-1-from {
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+
+header nav .side-1-to,
+header nav .side-2-to {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
+header nav .side-2-from {
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+}
+
+header nav .nav-links-from {
   -webkit-transform: translateY(-100%);
           transform: translateY(-100%);
 }
 
-header nav.down {
+header nav .nav-links-to {
   -webkit-transform: translateY(0);
           transform: translateY(0);
 }
@@ -91,6 +119,17 @@ header nav #nav-links {
   -webkit-box-flex: 2;
       -ms-flex: 2;
           flex: 2;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 header nav #nav-links li {
@@ -107,6 +146,7 @@ header .nav-toggler {
 
 header h1 {
   font-weight: 500;
+  color: #635a5a;
 }
 
 header .nav-toggler {
@@ -115,25 +155,47 @@ header .nav-toggler {
 
 header .nav-toggler .strip {
   border-radius: 5px;
-  width: 60px;
+  width: 50px;
   height: 5px;
-  background-color: #000;
-  -webkit-transform-origin: top left;
-          transform-origin: top left;
-  -webkit-transition: opacity 1s ease-in-out, -webkit-transform 1s ease-in-out;
-  transition: opacity 1s ease-in-out, -webkit-transform 1s ease-in-out;
-  transition: transform 1s ease-in-out, opacity 1s ease-in-out;
-  transition: transform 1s ease-in-out, opacity 1s ease-in-out, -webkit-transform 1s ease-in-out;
+  background-color: #635a5a;
+  -webkit-transform-origin: center left;
+          transform-origin: center left;
+  -webkit-transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+  transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
+  transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
 }
 
-header .nav-toggler .strip-1-up {
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-}
-
-header .nav-toggler .strip-1-down {
+header .nav-toggler .strip-1-trans-from {
   -webkit-transform: rotate(0);
           transform: rotate(0);
+}
+
+header .nav-toggler .strip-1-trans-to {
+  -webkit-transform: rotate(31.79deg);
+          transform: rotate(31.79deg);
+}
+
+header .nav-toggler .strip-2-trans-from {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+  opacity: 1;
+}
+
+header .nav-toggler .strip-2-trans-to {
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  opacity: 0;
+}
+
+header .nav-toggler .strip-3-trans-from {
+  -webkit-transform: rotate(0);
+          transform: rotate(0);
+}
+
+header .nav-toggler .strip-3-trans-to {
+  -webkit-transform: rotate(-31.79deg);
+          transform: rotate(-31.79deg);
 }
 
 header .nav-toggler > * + * {
